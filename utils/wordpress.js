@@ -29,21 +29,14 @@ export async function getEvent(slug) {
 
 export async function getFeaturedMedia(slug) {
     const post = await getPost(slug)
-    // console.log(_embedded);
-    // const {
-    //     _embedded: {
-    //         "wp:featuredmedia": {
-    //             media_details: {
-    //                 file
-    //             }
-    //         }
-    //     }
-    // } = post;
-    // console.log(file);
-    // const featuredMedia = `${MEDIA_URL}/${file}`;
-    // const featuredMedia = post['_embedded']['wp:featuredmedia'][0]['media_details']['file'];
     const featuredMedia = 'http://localhost:8888/njswp_be/event/18/02_majestic-padel_visuals-februari1/';
     return featuredMedia;
+}
+
+export async function getPages() {
+    const pagessRes = await fetch(BASE_URL + '/pages?_embed');
+    const pages = await postsRes.json();
+    return pages;
 }
 
 export async function getSlugs(type) {
