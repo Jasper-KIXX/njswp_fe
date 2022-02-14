@@ -34,9 +34,20 @@ export async function getFeaturedMedia(slug) {
 }
 
 export async function getPages() {
-    const pagessRes = await fetch(BASE_URL + '/pages?_embed');
-    const pages = await postsRes.json();
+    const pagesRes = await fetch(BASE_URL + '/pages?_embed');
+    const pages = await pagesRes.json();
     return pages;
+}
+
+export async function getHome() {
+    const allPages = await getPages();
+    const wpHome = allPages.filter((page) => page.slug == 'home');
+    return wpHome;
+}
+
+export const getPageContent = (wpPage) => {
+    const { content: { rendered } } = wpPage;
+    return rendered;
 }
 
 export async function getSlugs(type) {
